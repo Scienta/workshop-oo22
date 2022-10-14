@@ -37,4 +37,11 @@ class ProbabilityTest {
         assertEquals(EQUALLY_LIKELY.hashCode(), (1 outOf 2).hashCode())
     }
 
+    @Test
+    fun not() {
+        assertEquals(!CERTAIN, IMPOSSIBLE)
+        assertEquals(CERTAIN.not(), IMPOSSIBLE)
+        assertEquals(!!LIKELY, LIKELY)
+    }
+
 }

@@ -20,6 +20,9 @@ class Probability(private val fraction: BigDecimal) {
     override fun hashCode() =
         fraction.hashCode()
 
+    operator fun not() =
+        Probability(CERTAIN_FRACTION - fraction)
+
 
     companion object {
         private const val SCALE = 5
