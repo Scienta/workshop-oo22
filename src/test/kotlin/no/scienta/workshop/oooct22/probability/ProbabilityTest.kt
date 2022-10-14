@@ -53,4 +53,13 @@ class ProbabilityTest {
         assertNotEquals(LIKELY and UNLIKELY, LIKELY)
     }
 
+    @Test
+    fun or() {
+        assertEquals(LIKELY or IMPOSSIBLE, LIKELY)
+        assertEquals(LIKELY or CERTAIN, CERTAIN)
+        assertEquals(LIKELY or LIKELY, 15 outOf 16)
+        assertEquals(LIKELY or UNLIKELY, UNLIKELY or LIKELY)
+        assertEquals(EQUALLY_LIKELY or EQUALLY_LIKELY, LIKELY)
+    }
+
 }

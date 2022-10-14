@@ -27,6 +27,9 @@ class Probability(fraction: BigDecimal) {
     infix fun and(other: Probability) =
         Probability(this.fraction * other.fraction)
 
+    infix fun or(other: Probability) =
+        !(!this and !other)
+
 
     companion object {
         private const val SCALE = 5
