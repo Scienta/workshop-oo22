@@ -4,6 +4,8 @@ class Quantity(private val amount: Double, private val unit: Unit) {
 
     private constructor(amount: Number, unit: Unit) : this(amount.toDouble(), unit)
 
+
+
     companion object {
         val Int.tablespoon get() = Quantity(this, Tablespoon)
         val Int.teaspoon get() = Quantity(this, Teaspoon)
@@ -16,11 +18,12 @@ class Quantity(private val amount: Double, private val unit: Unit) {
 
     private fun equals(other: Quantity) =
         unit.compatible(other.unit)
-                && numberOfBaseUnits() == other.numberOfBaseUnits()
+                && this.amount == other.convertTo(this.unit).amount
 
-    override fun hashCode() = numberOfBaseUnits().hashCode()
+    private fun convertTo(target: Unit) =
+        Quantity(target.convert(amount, unit), target)
 
-    private fun numberOfBaseUnits() = this.unit.numberOfBaseUnits(this.amount)
+    override fun hashCode() = unit.hashOf(amount)
 
     override fun toString() = "$amount $unit"
 

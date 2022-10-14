@@ -34,6 +34,7 @@ class QuantityTest {
 
         1.tablespoon shouldBe 1.tablespoon
         3.teaspoon shouldBe 1.tablespoon
+        3.ounce shouldBe 6.tablespoon
         1.ounce shouldBe 6.teaspoon
         12.inch shouldBe 1.foot
         11.inch shouldNotBe 1.foot

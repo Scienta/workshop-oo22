@@ -34,8 +34,14 @@ sealed class Unit(
     fun compatible(other: Unit) : Boolean =
         this.baseUnit == other.baseUnit
 
-    fun numberOfBaseUnits(amount: Double) = amount * this.numberOfBaseUnits
     override fun toString() = shortName
+
+    fun convert(fromAmount: Double, fromUnit: Unit) =
+        fromAmount * fromUnit.numberOfBaseUnits / this.numberOfBaseUnits
+
+    fun hashOf(amount: Double): Int {
+        return (baseUnit to baseUnit.convert(amount, this)).hashCode()
+    }
 }
 
 object Teaspoon : Unit("tsp")
