@@ -1,12 +1,16 @@
 package no.scienta.workshop.oooct22.quantity
 
-import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.ounce
-import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.tablespoon
-import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.teaspoon
+import no.scienta.workshop.oooct22.quantity.Quantity.Companion.foot
+import no.scienta.workshop.oooct22.quantity.Quantity.Companion.inch
+import no.scienta.workshop.oooct22.quantity.Quantity.Companion.ounce
+import no.scienta.workshop.oooct22.quantity.Quantity.Companion.tablespoon
+import no.scienta.workshop.oooct22.quantity.Quantity.Companion.teaspoon
+
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
-class CookingVolumeTest {
+class QuantityTest {
 
     /*
 	- 1 tablespoon = 3 teaspoons
@@ -24,6 +28,9 @@ class CookingVolumeTest {
         assertEquals(3.teaspoon, 1.tablespoon)
         assertEquals(3.teaspoon.hashCode(), 1.tablespoon.hashCode())
         assertEquals(1.ounce, 6.teaspoon)
-    }
+        assertEquals(12.inch, 1.foot)
+        assertNotEquals(11.inch, 1.foot)
 
+        assertNotEquals(1.teaspoon, 1.inch)
+    }
 }
