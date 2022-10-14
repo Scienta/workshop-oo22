@@ -9,13 +9,13 @@ class MainTest {
     @Test
     fun testKotlin(){
         assertTrue ("The developer has fixed the example test") {
-            false
+            true
         }
     }
 
     @Test
     fun testAssertJ() {
-        assertThat(false)
+        assertThat(true)
             .describedAs("The developer has fixed the example test")
             .isTrue
     }
