@@ -5,6 +5,7 @@ class CookingVolume(private val amount: Int, private val unit: CookingVolumeUnit
     companion object {
         val Int.tablespoon get() = CookingVolume(this, Tablespoon)
         val Int.teaspoon get() = CookingVolume(this, Teaspoon)
+        val Int.ounce get() = CookingVolume(this, Ounce)
     }
     override fun equals(other: Any?) = this === other || other is CookingVolume && equals(other)
 

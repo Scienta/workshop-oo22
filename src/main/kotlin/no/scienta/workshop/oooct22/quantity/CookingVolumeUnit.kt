@@ -9,11 +9,22 @@ package no.scienta.workshop.oooct22.quantity
    - 1 gallon = 4 quarts
     */
 
-sealed class CookingVolumeUnit(private val numberOfTeaspoons: Int,
-                               private val shortName:String) {
-    fun numberOfTeaspoons(amount: Int) = amount * this.numberOfTeaspoons
+sealed class CookingVolumeUnit(
+    private val shortName: String,
+    private val numberOfTeaspoons: Int = 1 ) {
+
+    constructor(
+        shortName: String,
+        numberOfBaseUnits: Int,
+        baseUnit: CookingVolumeUnit) : this( shortName,
+        numberOfBaseUnits * baseUnit.numberOfTeaspoons
+    )
+
+    fun numberOfTeaspoons(amount: Int): Int = amount * this.numberOfTeaspoons
     override fun toString() = shortName
 }
-object Tablespoon : CookingVolumeUnit(3, "tbs")
-object Teaspoon : CookingVolumeUnit(1, "tsp")
+
+object Teaspoon : CookingVolumeUnit("tsp")
+object Tablespoon : CookingVolumeUnit("tbs", 3, Teaspoon)
+object Ounce : CookingVolumeUnit("oz. fl", 2, Tablespoon)
 

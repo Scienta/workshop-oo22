@@ -1,5 +1,6 @@
 package no.scienta.workshop.oooct22.quantity
 
+import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.ounce
 import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.tablespoon
 import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.teaspoon
 import org.junit.jupiter.api.Test
@@ -22,6 +23,7 @@ class CookingVolumeTest {
         assertEquals(1.tablespoon.hashCode(), 1.tablespoon.hashCode())
         assertEquals(3.teaspoon, 1.tablespoon)
         assertEquals(3.teaspoon.hashCode(), 1.tablespoon.hashCode())
+        assertEquals(1.ounce, 6.teaspoon)
     }
 
 }
