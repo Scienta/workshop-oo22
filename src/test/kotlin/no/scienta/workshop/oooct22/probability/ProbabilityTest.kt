@@ -4,6 +4,7 @@ import no.scienta.workshop.oooct22.probability.Probability.Companion.outOf
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.assertThrows
 
 class ProbabilityTest {
 
@@ -16,10 +17,24 @@ class ProbabilityTest {
     }
 
     @Test
+    fun `invalid fractions`() {
+        assertThrows<IllegalArgumentException> { 12 outOf 10 }
+        assertThrows<IllegalArgumentException> { 12 outOf 0 }
+        assertThrows<IllegalArgumentException> { -2 outOf 10 }
+    }
+
+    @Test
     fun equals() {
         assertEquals(CERTAIN, CERTAIN)
         assertEquals(EQUALLY_LIKELY, 1 outOf 2)
         assertNotEquals(LIKELY, UNLIKELY)
         assertNotEquals(IMPOSSIBLE, null)
     }
+
+    @Test
+    fun hash() {
+        assertEquals(CERTAIN.hashCode(), CERTAIN.hashCode())
+        assertEquals(EQUALLY_LIKELY.hashCode(), (1 outOf 2).hashCode())
+    }
+
 }

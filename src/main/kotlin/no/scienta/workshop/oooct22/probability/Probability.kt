@@ -3,6 +3,7 @@ package no.scienta.workshop.oooct22.probability
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+//Understands the likelihood of something occuring
 class Probability(private val fraction: BigDecimal) {
 
     init {
@@ -15,6 +16,10 @@ class Probability(private val fraction: BigDecimal) {
 
     private fun equals(other: Probability) =
         this.fraction == other.fraction
+
+    override fun hashCode() =
+        fraction.hashCode()
+
 
     companion object {
         private const val SCALE = 5
