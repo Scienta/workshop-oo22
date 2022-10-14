@@ -18,6 +18,8 @@ class CookingVolumeTest {
     fun equality() {
         assertEquals(CookingVolume(1, Tablespoon), CookingVolume(1, Tablespoon))
         assertEquals(CookingVolume(1, Tablespoon).hashCode(), CookingVolume(1, Tablespoon).hashCode())
+        assertEquals(CookingVolume(3, Teaspoon), CookingVolume(1, Tablespoon))
+        assertEquals(CookingVolume(3, Teaspoon).hashCode(), CookingVolume(1, Tablespoon).hashCode())
     }
 
 }
