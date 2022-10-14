@@ -1,6 +1,8 @@
 package no.scienta.workshop.oooct22.quantity
 
-class Quantity(private val amount: Int, private val unit: Unit) {
+class Quantity(private val amount: Double, private val unit: Unit) {
+
+    private constructor(amount: Number, unit: Unit) : this(amount.toDouble(), unit)
 
     companion object {
         val Int.tablespoon get() = Quantity(this, Tablespoon)
@@ -16,7 +18,7 @@ class Quantity(private val amount: Int, private val unit: Unit) {
         unit.compatible(other.unit)
                 && numberOfBaseUnits() == other.numberOfBaseUnits()
 
-    override fun hashCode() = numberOfBaseUnits()
+    override fun hashCode() = numberOfBaseUnits().hashCode()
 
     private fun numberOfBaseUnits() = this.unit.numberOfBaseUnits(this.amount)
 

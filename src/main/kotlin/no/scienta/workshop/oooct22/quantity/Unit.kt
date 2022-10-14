@@ -34,7 +34,7 @@ sealed class Unit(
     fun compatible(other: Unit) : Boolean =
         this.baseUnit == other.baseUnit
 
-    fun numberOfBaseUnits(amount: Int): Int = amount * this.numberOfBaseUnits
+    fun numberOfBaseUnits(amount: Double) = amount * this.numberOfBaseUnits
     override fun toString() = shortName
 }
 
