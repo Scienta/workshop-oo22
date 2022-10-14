@@ -4,12 +4,11 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 //Understands the likelihood of something occuring
-class Probability(private val fraction: BigDecimal) {
+class Probability(fraction: BigDecimal) {
 
-    init {
-        require(fraction.scale() == SCALE)
-        require(fraction in IMPOSSIBLE_FRACTION .. CERTAIN_FRACTION)
-    }
+    private val fraction = fraction
+        .setScale(SCALE, RoundingMode.HALF_UP)
+        .also { require(it in IMPOSSIBLE_FRACTION..CERTAIN_FRACTION) }
 
     override fun equals(other: Any?) =
         this === other || other is Probability && this.equals(other)
@@ -20,8 +19,13 @@ class Probability(private val fraction: BigDecimal) {
     override fun hashCode() =
         fraction.hashCode()
 
+    override fun toString() = fraction.toString()
+
     operator fun not() =
         Probability(CERTAIN_FRACTION - fraction)
+
+    infix fun and(other: Probability) =
+        Probability(this.fraction * other.fraction)
 
 
     companion object {
@@ -32,7 +36,6 @@ class Probability(private val fraction: BigDecimal) {
         infix fun Number.outOf(total: Number) =
             (this.toDouble() / total.toDouble())
                 .let(Double::toBigDecimal)
-                .setScale(SCALE, RoundingMode.HALF_UP)
                 .let(::Probability)
     }
 
