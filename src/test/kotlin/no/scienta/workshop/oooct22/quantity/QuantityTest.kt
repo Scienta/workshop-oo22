@@ -23,14 +23,20 @@ class QuantityTest {
 
     @Test
     fun equality() {
-        assertEquals(1.tablespoon, 1.tablespoon)
-        assertEquals(1.tablespoon.hashCode(), 1.tablespoon.hashCode())
-        assertEquals(3.teaspoon, 1.tablespoon)
-        assertEquals(3.teaspoon.hashCode(), 1.tablespoon.hashCode())
-        assertEquals(1.ounce, 6.teaspoon)
-        assertEquals(12.inch, 1.foot)
-        assertNotEquals(11.inch, 1.foot)
+        infix fun Quantity.shouldBe(other: Quantity) {
+            assertEquals(this, other)
+            assertEquals(this.hashCode(), other.hashCode())
+        }
 
-        assertNotEquals(1.teaspoon, 1.inch)
+        infix fun Quantity.shouldNotBe(other: Quantity) =
+            assertNotEquals(this, other)
+
+
+        1.tablespoon shouldBe 1.tablespoon
+        3.teaspoon shouldBe 1.tablespoon
+        1.ounce shouldBe 6.teaspoon
+        12.inch shouldBe 1.foot
+        11.inch shouldNotBe 1.foot
+        1.teaspoon shouldNotBe 1.inch
     }
 }
