@@ -1,5 +1,7 @@
 package no.scienta.workshop.oooct22.quantity
 
+import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.tablespoon
+import no.scienta.workshop.oooct22.quantity.CookingVolume.Companion.teaspoon
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -16,10 +18,10 @@ class CookingVolumeTest {
 
     @Test
     fun equality() {
-        assertEquals(CookingVolume(1, Tablespoon), CookingVolume(1, Tablespoon))
-        assertEquals(CookingVolume(1, Tablespoon).hashCode(), CookingVolume(1, Tablespoon).hashCode())
-        assertEquals(CookingVolume(3, Teaspoon), CookingVolume(1, Tablespoon))
-        assertEquals(CookingVolume(3, Teaspoon).hashCode(), CookingVolume(1, Tablespoon).hashCode())
+        assertEquals(1.tablespoon, 1.tablespoon)
+        assertEquals(1.tablespoon.hashCode(), 1.tablespoon.hashCode())
+        assertEquals(3.teaspoon, 1.tablespoon)
+        assertEquals(3.teaspoon.hashCode(), 1.tablespoon.hashCode())
     }
 
 }
